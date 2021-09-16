@@ -3,18 +3,20 @@ import java.util.Scanner;
 public class MethodsProject {
     public static void main(String[] args) {
         // Initiate scanner object for user input
-        Scanner scanner = new Scanner(System.in);
+        Scanner scannerDouble = new Scanner(System.in);
+        Scanner scannerString = new Scanner(System.in);
+        Scanner scannerBoolean = new Scanner(System.in);
 
         // Task 1 - implementation of smallestNumber method
         System.out.println("--- TASK 1 ---");
 
         // Ask user to input three numbers
         System.out.println("Please enter first number:");
-        double number1 = scanner.nextDouble();
+        double number1 = scannerDouble.nextDouble();
         System.out.println("Please enter second number:");
-        double number2 = scanner.nextDouble();
+        double number2 = scannerDouble.nextDouble();
         System.out.println("Please enter third number:");
-        double number3 = scanner.nextDouble();
+        double number3 = scannerDouble.nextDouble();
 
         // use the method
         System.out.println("The smallest value is " + smallestNumber(number1,number2,number3));
@@ -24,17 +26,13 @@ public class MethodsProject {
 
         // Ask user to input a number
         System.out.println("Please enter a number:");
-        double number_task2 = scanner.nextDouble();
+        double number_task2 = scannerDouble.nextDouble();
 
         // use the method
         signOfNumber(number_task2);
 
         // Task 3 - implementation of getMiddleCharacter method
         System.out.println("--- TASK 3 ---");
-
-        // Initiate scanner object for user input
-        Scanner scannerString = new Scanner(System.in);
-        Scanner scannerBoolean = new Scanner(System.in);
 
         // Ask user to input a number
         System.out.println("Please enter a string:");
@@ -49,7 +47,23 @@ public class MethodsProject {
         // use the method
         System.out.println("The middle character is " + getMiddleCharacter(inputString,removeWhiteSpace,chooseRightChar));
 
-        //
+        // Task 4 - implementation of getAreaOfTriangle method
+        System.out.println("--- TASK 4 ---");
+
+        // Ask user to input three numbers
+        System.out.println("Please enter first side length of triangle:");
+        double sideOne = scannerDouble.nextDouble();
+        System.out.println("Please enter second side length of triangle:");
+        double sideTwo = scannerDouble.nextDouble();
+        System.out.println("Please enter third side length of triangle:");
+        double sideThree = scannerDouble.nextDouble();
+
+        // use the method
+        System.out.println("Input Side-1: "+sideOne);
+        System.out.println("Input Side-2: "+sideTwo);
+        System.out.println("Input Side-3: "+sideThree);
+        System.out.println("The area of the triangle is "+getAreaOfTriangle(sideOne,sideTwo,sideThree));
+
     }
 
     // Task 1
@@ -106,5 +120,16 @@ public class MethodsProject {
             middleIndex = lengthOfStringMinusOne/2; // note we use integer division
         }
         return inputString.charAt(middleIndex);
+    }
+
+
+    // Task 4
+    // We take the three sides of a triangle as input, and use Herons formula
+    // to get the area of the triangle
+    public static double getAreaOfTriangle(double sideOne,double sideTwo, double sideThree){
+        double semiPerimeter = (sideOne+sideTwo+sideThree)/2.0;
+        // Herons formula
+        double area = Math.sqrt(semiPerimeter*(semiPerimeter-sideOne)*(semiPerimeter-sideTwo)*(semiPerimeter-sideThree));
+        return area;
     }
 }
