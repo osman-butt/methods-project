@@ -28,6 +28,28 @@ public class MethodsProject {
 
         // use the method
         signOfNumber(number_task2);
+
+        // Task 3 - implementation of getMiddleCharacter method
+        System.out.println("--- TASK 3 ---");
+
+        // Initiate scanner object for user input
+        Scanner scannerString = new Scanner(System.in);
+        Scanner scannerBoolean = new Scanner(System.in);
+
+        // Ask user to input a number
+        System.out.println("Please enter a string:");
+        String inputString = scannerString.nextLine();
+
+        System.out.println("Do you want to remove white space? (enter: true/false)");
+        boolean removeWhiteSpace = scannerBoolean.nextBoolean();
+
+        System.out.println("If string length is even, do you want to choose the right hand side character? (enter: true/false)");
+        boolean chooseRightChar = scannerString.nextBoolean();
+
+        // use the method
+        System.out.println("The middle character is " + getMiddleCharacter(inputString,removeWhiteSpace,chooseRightChar));
+
+        //
     }
 
     // Task 1
@@ -44,7 +66,7 @@ public class MethodsProject {
     // Implementing a function that takes a number as an input
     // and prints the sign of the number.
     public static void signOfNumber(double number){
-        String sign = "";
+        String sign;
         if (number>0.0){
             sign = "positive";
         }else if (number < 0.0){
@@ -55,4 +77,34 @@ public class MethodsProject {
         System.out.println("The sign of value is " + sign);
     }
 
+    // Task 3
+    // Returns the middle character of string,
+    // and takes a string as input.
+    // NOT USED IN PROGRAM SINCE ITS OUTPUT IS CONTAINED IN OVERLOADED METHOD
+    public static char getMiddleCharacter(String inputString){
+        int lengthOfStringMinusOne = inputString.length()-1;
+        int middleIndex = lengthOfStringMinusOne/2; // note we use integer division
+        return inputString.charAt(middleIndex);
+    }
+
+    // Returns the middle character of a string,
+    // and takes a string as input, a boolean variable to control,
+    // whether we want to include or exclude whitespace, and a boolean to choose
+    // if we want left or right char whenever the string has an even length.
+    public static char getMiddleCharacter(String inputString, boolean ignoreWhitespace, boolean chooseRightChar){
+        // If ignoreWhiteSpace=true, we remove whitespaces
+        if(ignoreWhitespace){
+            inputString = inputString.replaceAll("\\s", "");
+        }
+        int lengthOfStringMinusOne = inputString.length()-1;
+
+        // if even and chooseRight==true, then we choose right char
+        int middleIndex;
+        if((lengthOfStringMinusOne % 2)==1 && chooseRightChar){
+            middleIndex = lengthOfStringMinusOne/2 + 1; // note we use integer division
+        }else{
+            middleIndex = lengthOfStringMinusOne/2; // note we use integer division
+        }
+        return inputString.charAt(middleIndex);
+    }
 }
