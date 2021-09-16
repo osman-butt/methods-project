@@ -95,6 +95,7 @@ public class MethodsProject {
         return Math.min(firstCheck,secondCheck);
     }
 
+
     // Task 2
     // Implementing a function that takes a number as an input
     // and prints the sign of the number.
@@ -109,6 +110,7 @@ public class MethodsProject {
         }
         System.out.println("The sign of value is " + sign);
     }
+
 
     // Task 3
     // Returns the middle character of string,
@@ -146,6 +148,7 @@ public class MethodsProject {
         return inputString.charAt(middleIndex);
     }
 
+
     // Task 4
     // We take the three sides of a triangle as input, and use Herons formula
     // to get the area of the triangle
@@ -155,6 +158,7 @@ public class MethodsProject {
         double area = Math.sqrt(semiPerimeter*(semiPerimeter-sideOne)*(semiPerimeter-sideTwo)*(semiPerimeter-sideThree));
         return area;
     }
+
 
     // Task 5
     // valid password checker
@@ -189,6 +193,7 @@ public class MethodsProject {
 
         return validPassword;
     }
+
 
     // Task 6
     // Takes number as an input, and prints number from 1 to maximumNumber
