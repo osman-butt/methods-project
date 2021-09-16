@@ -2,10 +2,11 @@ import java.util.Scanner;
 
 public class MethodsProject {
     public static void main(String[] args) {
-        // Task 1 - implementation of smallestNumber method
-        System.out.println("--- TASK 1 ---");
         // Initiate scanner object for user input
         Scanner scanner = new Scanner(System.in);
+
+        // Task 1 - implementation of smallestNumber method
+        System.out.println("--- TASK 1 ---");
 
         // Ask user to input three numbers
         System.out.println("Please enter first number:");
@@ -17,6 +18,16 @@ public class MethodsProject {
 
         // use the method
         System.out.println("The smallest value is " + smallestNumber(number1,number2,number3));
+
+        // Task 2 - implementation of signOfNumber method
+        System.out.println("--- TASK 2 ---");
+
+        // Ask user to input a number
+        System.out.println("Please enter a number:");
+        double number_task2 = scanner.nextDouble();
+
+        // use the method
+        signOfNumber(number_task2);
     }
 
     // Task 1
@@ -29,5 +40,19 @@ public class MethodsProject {
         return Math.min(firstCheck,secondCheck);
     }
 
+    // Task 2
+    // Implementing a function that takes a number as an input
+    // and prints the sign of the number.
+    public static void signOfNumber(double number){
+        String sign = "";
+        if (number>0.0){
+            sign = "positive";
+        }else if (number < 0.0){
+            sign = "negative";
+        }else {
+            sign = "zero";
+        }
+        System.out.println("The sign of value is " + sign);
+    }
 
 }
