@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.*;
 
 public class MethodsProject {
     public static void main(String[] args) {
@@ -42,7 +43,7 @@ public class MethodsProject {
         boolean removeWhiteSpace = scannerBoolean.nextBoolean();
 
         System.out.println("If string length is even, do you want to choose the right hand side character? (enter: true/false)");
-        boolean chooseRightChar = scannerString.nextBoolean();
+        boolean chooseRightChar = scannerBoolean.nextBoolean();
 
         // use the method
         System.out.println("The middle character is " + getMiddleCharacter(inputString,removeWhiteSpace,chooseRightChar));
@@ -63,6 +64,14 @@ public class MethodsProject {
         System.out.println("Input Side-2: "+sideTwo);
         System.out.println("Input Side-3: "+sideThree);
         System.out.println("The area of the triangle is "+getAreaOfTriangle(sideOne,sideTwo,sideThree));
+
+        // Task 5
+        System.out.println("--- TASK 5 ---");
+
+        System.out.println("Please enter password:");
+        String password = scannerString.nextLine();
+
+        System.out.println("Is the password valid: "+isValidPassword(password));
 
     }
 
@@ -122,7 +131,6 @@ public class MethodsProject {
         return inputString.charAt(middleIndex);
     }
 
-
     // Task 4
     // We take the three sides of a triangle as input, and use Herons formula
     // to get the area of the triangle
@@ -131,5 +139,39 @@ public class MethodsProject {
         // Herons formula
         double area = Math.sqrt(semiPerimeter*(semiPerimeter-sideOne)*(semiPerimeter-sideTwo)*(semiPerimeter-sideThree));
         return area;
+    }
+
+    // Task 5
+    // valid password checker
+    public static boolean isValidPassword(String password){
+        // Initially we assume that the password is correct
+        // But if it fails one of the test, the password comes out
+        // as none valid
+        boolean validPassword = true;
+
+        // check if it is eight characters long:
+        int lengthOfPassword = password.length();
+        if(lengthOfPassword<8){
+            validPassword = false;
+        }
+        boolean hasNonAlphanumeric = password.matches("^.*[^a-zA-Z0-9 ].*$");
+        if(hasNonAlphanumeric){
+            validPassword = false;
+        }
+
+        // Cannot contain word "secret"
+        String toLowerPassword = password.toLowerCase();
+        boolean isSecretContainedInPassword = toLowerPassword.indexOf("secret") !=-1? true: false;
+        if(isSecretContainedInPassword){
+            validPassword = false;
+        }
+
+        // Check if first char in password is "-"
+        char firstChar = password.charAt(0);
+        if(firstChar=='-'){
+            validPassword = false;
+        }
+
+        return validPassword;
     }
 }
