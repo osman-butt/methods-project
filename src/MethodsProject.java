@@ -7,6 +7,7 @@ public class MethodsProject {
         Scanner scannerDouble = new Scanner(System.in);
         Scanner scannerString = new Scanner(System.in);
         Scanner scannerBoolean = new Scanner(System.in);
+        Scanner scannerInt = new Scanner(System.in);
 
         // Task 1 - implementation of smallestNumber method
         System.out.println("--- TASK 1 ---");
@@ -73,6 +74,12 @@ public class MethodsProject {
 
         System.out.println("Is the password valid: "+isValidPassword(password));
 
+        // Task 6
+        System.out.println("--- TASK 6 ---");
+
+        System.out.println("Please enter a number:");
+        int maximumNumber = scannerInt.nextInt();
+        printNumbers(maximumNumber);
     }
 
     // Task 1
@@ -173,5 +180,13 @@ public class MethodsProject {
         }
 
         return validPassword;
+    }
+
+    // Task 6
+    // Takes number as an input, and prints number from 1 to maximumNumber
+    public static void printNumbers(int maximumNumber){
+        for (int i = 1; i<=maximumNumber;i++){
+            System.out.print("["+i+"]");
+        }
     }
 }
