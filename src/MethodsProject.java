@@ -6,7 +6,6 @@ public class MethodsProject {
         // Initiate scanner object for user input
         Scanner scannerDouble = new Scanner(System.in);
         Scanner scannerString = new Scanner(System.in);
-        Scanner scannerBoolean = new Scanner(System.in);
         Scanner scannerInt = new Scanner(System.in);
 
         // Task 1 - implementation of smallestNumber method
@@ -20,8 +19,9 @@ public class MethodsProject {
         System.out.println("Please enter third number:");
         double number3 = scannerDouble.nextDouble();
 
-        // use the method
+        // implementation of method
         System.out.println("The smallest value is " + smallestNumber(number1,number2,number3));
+
 
         // Task 2 - implementation of signOfNumber method
         System.out.println("--- TASK 2 ---");
@@ -30,8 +30,9 @@ public class MethodsProject {
         System.out.println("Please enter a number:");
         double number_task2 = scannerDouble.nextDouble();
 
-        // use the method
+        // implementation of method
         signOfNumber(number_task2);
+
 
         // Task 3 - implementation of getMiddleCharacter method
         System.out.println("--- TASK 3 ---");
@@ -40,14 +41,9 @@ public class MethodsProject {
         System.out.println("Please enter a string:");
         String inputString = scannerString.nextLine();
 
-        System.out.println("Do you want to remove white space? (enter: true/false)");
-        boolean removeWhiteSpace = scannerBoolean.nextBoolean();
+        // implementation of method
+        System.out.println("The middle character is " + getMiddleCharacter(inputString));
 
-        System.out.println("If string length is even, do you want to choose the right hand side character? (enter: true/false)");
-        boolean chooseRightChar = scannerBoolean.nextBoolean();
-
-        // use the method
-        System.out.println("The middle character is " + getMiddleCharacter(inputString,removeWhiteSpace,chooseRightChar));
 
         // Task 4 - implementation of getAreaOfTriangle method
         System.out.println("--- TASK 4 ---");
@@ -60,25 +56,32 @@ public class MethodsProject {
         System.out.println("Please enter third side length of triangle:");
         double sideThree = scannerDouble.nextDouble();
 
-        // use the method
+        // implementation of method
         System.out.println("Input Side-1: "+sideOne);
         System.out.println("Input Side-2: "+sideTwo);
         System.out.println("Input Side-3: "+sideThree);
         System.out.println("The area of the triangle is "+getAreaOfTriangle(sideOne,sideTwo,sideThree));
 
+
         // Task 5
         System.out.println("--- TASK 5 ---");
 
+        // Ask user for a password
         System.out.println("Please enter password:");
         String password = scannerString.nextLine();
 
+        // implementation of method
         System.out.println("Is the password valid: "+isValidPassword(password));
+
 
         // Task 6
         System.out.println("--- TASK 6 ---");
 
+        // Ask user to input a number
         System.out.println("Please enter a number:");
         int maximumNumber = scannerInt.nextInt();
+
+        // Implementation of method
         printNumbers(maximumNumber);
     }
 
@@ -110,31 +113,36 @@ public class MethodsProject {
     // Task 3
     // Returns the middle character of string,
     // and takes a string as input.
-    // NOT USED IN PROGRAM SINCE ITS OUTPUT IS CONTAINED IN OVERLOADED METHOD
+    // If the string has spaces, the user is asked whether they what them removed or not.
+    // If the string is of even length, the user is able to choose left or right
+    // character.
     public static char getMiddleCharacter(String inputString){
+        // Initiate scanner object for user input
+        Scanner scannerTask3 = new Scanner(System.in);
+
+        // Check if string contains whitespace
+        boolean containsWhitespace = inputString.contains(" ");
+        if(containsWhitespace){
+            System.out.println("String contains spaces, do you want to remove them? (y/n)");
+            String removeSpace = scannerTask3.nextLine();
+            if(removeSpace.equals("y")){
+                inputString = inputString.replaceAll("\\s", "");
+            }
+        }
+
         int lengthOfStringMinusOne = inputString.length()-1;
         int middleIndex = lengthOfStringMinusOne/2; // note we use integer division
-        return inputString.charAt(middleIndex);
-    }
 
-    // Returns the middle character of a string,
-    // and takes a string as input, a boolean variable to control,
-    // whether we want to include or exclude whitespace, and a boolean to choose
-    // if we want left or right char whenever the string has an even length.
-    public static char getMiddleCharacter(String inputString, boolean ignoreWhitespace, boolean chooseRightChar){
-        // If ignoreWhiteSpace=true, we remove whitespaces
-        if(ignoreWhitespace){
-            inputString = inputString.replaceAll("\\s", "");
+        // Check if string is of even length
+        boolean isEven = (inputString.length() % 2)==0;
+        if(isEven){
+            System.out.println("String is of even length, do you want to the left or right character? (l/r)");
+            String leftOrRightChar = scannerTask3.nextLine();
+            if(leftOrRightChar.equals("r")){
+                middleIndex = lengthOfStringMinusOne/2 + 1;
+            }
         }
-        int lengthOfStringMinusOne = inputString.length()-1;
 
-        // if even and chooseRight==true, then we choose right char
-        int middleIndex;
-        if((lengthOfStringMinusOne % 2)==1 && chooseRightChar){
-            middleIndex = lengthOfStringMinusOne/2 + 1; // note we use integer division
-        }else{
-            middleIndex = lengthOfStringMinusOne/2; // note we use integer division
-        }
         return inputString.charAt(middleIndex);
     }
 
@@ -168,7 +176,7 @@ public class MethodsProject {
 
         // Cannot contain word "secret"
         String toLowerPassword = password.toLowerCase();
-        boolean isSecretContainedInPassword = toLowerPassword.indexOf("secret") !=-1? true: false;
+        boolean isSecretContainedInPassword = toLowerPassword.contains("secret");
         if(isSecretContainedInPassword){
             validPassword = false;
         }
